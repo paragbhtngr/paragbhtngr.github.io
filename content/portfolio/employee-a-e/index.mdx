@@ -1,0 +1,50 @@
+---
+title: Hello World
+date: "2015-05-01T22:12:03.284Z"
+description: "Hello World"
+slug: "employee-a-e"
+post: portfolio
+featuredImage: "./3B-1.jpg"
+embeddedImagesLocal:
+  - 3B-1.jpg
+  - 3B-2b.jpg
+  - 3B-3.jpg
+---
+
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
+
+This is my first post on my new fake blog! How exciting!
+
+## Local Images
+
+<div className='image-grid'>
+
+<GatsbyImage
+  alt="green doggo"
+  image={getImage(
+    props.data.mdx.frontmatter.embeddedImagesLocal[0].childImageSharp
+      ?.gatsbyImageData
+  )}
+/>
+<GatsbyImage
+  alt="orange doggo"
+  image={getImage(
+    props.data.mdx.frontmatter.embeddedImagesLocal[1].childImageSharp
+      ?.gatsbyImageData
+  )}
+/>
+<GatsbyImage
+  alt="orange doggo"
+  image={getImage(
+    props.data.mdx.frontmatter.embeddedImagesLocal[2].childImageSharp
+      ?.gatsbyImageData
+  )}
+/>
+
+</div>
+
+You can also write code blocks here!
+
+```js
+const saltyDuckEgg = "chinese preserved food product"
+```

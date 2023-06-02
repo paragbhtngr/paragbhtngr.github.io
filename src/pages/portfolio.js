@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const BlogIndex = ({ data, location }) => {
+const PortfolioIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.nodes
 
@@ -28,9 +29,13 @@ const BlogIndex = ({ data, location }) => {
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.frontmatter.slug
+          const featuredImg = getImage(
+            post.frontmatter.featuredImage?.childImageSharp?.gatsbyImageData
+          )
 
           return (
             <li key={post.frontmatter.slug}>
+              <GatsbyImage image={featuredImg} />
               <article
                 className="post-list-item"
                 itemScope
@@ -38,7 +43,7 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.frontmatter.slug} itemProp="url">
+                    <Link to={`/${post.frontmatter.slug}`} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
@@ -61,7 +66,7 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-export default BlogIndex
+export default PortfolioIndex
 
 /**
  * Head export to define metadata for the page
@@ -77,7 +82,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+    allMdx(
+      sort: { frontmatter: { date: DESC } }
+      filter: { frontmatter: { post: { eq: "portfolio" } } }
+    ) {
       nodes {
         excerpt
         frontmatter {
@@ -85,6 +93,11 @@ export const pageQuery = graphql`
           title
           description
           slug
+          featuredImage {
+            childImageSharp {
+              gatsbyImageData(width: 800)
+            }
+          }
         }
       }
     }

@@ -8,7 +8,7 @@ import Seo from "../components/seo"
 
 const shortcodes = { Link } // Provide common components here
 
-const BlogPostTemplate = ({
+const PortfolioPostTemplate = ({
   data: { previous, next, site, mdx },
   children,
   location,
@@ -26,7 +26,12 @@ const BlogPostTemplate = ({
           <h1 itemProp="headline">{mdx.frontmatter.title}</h1>
           <p>{mdx.frontmatter.date}</p>
         </header>
-        <MDXProvider components={shortcodes}>{children}</MDXProvider>
+        <MDXProvider
+          components={shortcodes}
+          localImages={mdx.frontmatter.embeddedImagesLocal}
+        >
+          {children}
+        </MDXProvider>
         <hr />
         <footer>
           <Bio />
@@ -71,10 +76,10 @@ export const Head = ({ data: { mdx } }) => {
   )
 }
 
-export default BlogPostTemplate
+export default PortfolioPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query PorfolioPostBySlug(
     $id: String!
     $previousPostId: String
     $nextPostId: String
@@ -91,7 +96,13 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        embeddedImagesLocal {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
       }
+      body
     }
     previous: mdx(id: { eq: $previousPostId }) {
       frontmatter {

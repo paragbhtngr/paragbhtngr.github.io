@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
+  console.log("data", data)
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.nodes
 
@@ -25,12 +26,12 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-8">
         {posts.map(post => {
           const title = post.frontmatter.title || post.frontmatter.slug
 
           return (
-            <li key={post.frontmatter.slug}>
+            <div key={post.frontmatter.slug}>
               <article
                 className="post-list-item"
                 itemScope
@@ -38,7 +39,7 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.frontmatter.slug} itemProp="url">
+                    <Link to={`/${post.frontmatter.slug}`} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
@@ -53,10 +54,10 @@ const BlogIndex = ({ data, location }) => {
                   />
                 </section>
               </article>
-            </li>
+            </div>
           )
         })}
-      </ol>
+      </div>
     </Layout>
   )
 }
@@ -77,7 +78,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+    allMdx(
+      sort: { frontmatter: { date: DESC } }
+      filter: { frontmatter: { post: { eq: "blog" } } }
+    ) {
       nodes {
         excerpt
         frontmatter {
