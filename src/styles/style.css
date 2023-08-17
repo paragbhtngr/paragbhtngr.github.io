@@ -32,7 +32,7 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
     Times, serif;
-  --font-body: var(--fontFamily-serif);
+  --font-body: var(--fontFamily-sans);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
   --fontWeight-bold: 700;
@@ -78,6 +78,7 @@ body {
   font-family: var(--font-body);
   font-size: var(--fontSize-1);
   color: var(--color-text);
+  min-height: 100vh;
 }
 
 footer {
@@ -102,7 +103,7 @@ h6 {
   margin-top: var(--spacing-12);
   margin-bottom: var(--spacing-6);
   line-height: var(--lineHeight-tight);
-  letter-spacing: -0.025em;
+  letter-spacing: 0em;
 }
 
 h2,
@@ -174,9 +175,18 @@ ol {
   list-style-image: none;
 }
 
+ol {
+  list-style-type: decimal;
+  padding-left: var(--spacing-5);
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: var(--spacing-5);
+}
+
 ul li,
 ol li {
-  padding-left: var(--spacing-0);
   margin-bottom: calc(var(--spacing-8) / 2);
 }
 
@@ -256,22 +266,6 @@ a:focus {
   margin: 0;
 }
 
-.post-list-item {
-  margin-bottom: var(--spacing-8);
-  margin-top: var(--spacing-8);
-}
-
-.post-list-item p {
-  margin-bottom: var(--spacing-0);
-}
-
-.post-list-item h2 {
-  font-size: var(--fontSize-4);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-2);
-  margin-top: var(--spacing-0);
-}
-
 .post-list-item header {
   margin-bottom: var(--spacing-4);
 }
@@ -292,19 +286,6 @@ a:focus {
   border-radius: 100%;
 }
 
-.blog-post header h1 {
-  margin: var(--spacing-0) var(--spacing-0) var(--spacing-4) var(--spacing-0);
-}
-
-.blog-post header p {
-  font-size: var(--fontSize-2);
-  font-family: var(--font-heading);
-}
-
-.blog-post-nav ul {
-  margin: var(--spacing-0);
-}
-
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
 }
@@ -319,5 +300,42 @@ a:focus {
   ul,
   ol {
     list-style-position: inside;
+  }
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #0369a1;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInAnimation ease 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
   }
 }

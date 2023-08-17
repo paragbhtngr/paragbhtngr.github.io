@@ -17,36 +17,26 @@ const PortfolioPostTemplate = ({
 
   return (
     <Layout location={location} title={siteTitle}>
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{mdx.frontmatter.title}</h1>
-          <p>{mdx.frontmatter.date}</p>
-        </header>
-        <MDXProvider
-          components={shortcodes}
-          localImages={mdx.frontmatter.embeddedImagesLocal}
-        >
-          {children}
-        </MDXProvider>
+      <article itemScope itemType="http://schema.org/Article" className="px-4">
+        <div className="max-w-[42rem] px-4 m-auto fade-in-up">
+          <header>
+            <h1 itemProp="headline">{mdx.frontmatter.title}</h1>
+            <p>{mdx.frontmatter.date}</p>
+          </header>
+          <MDXProvider
+            components={shortcodes}
+            localImages={mdx.frontmatter.embeddedImagesLocal}
+          >
+            {children}
+          </MDXProvider>
+        </div>
         <hr />
         <footer>
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+      <nav className="">
+        <ul className="flex justify-between font-bold list-none max-w-[42rem] m-auto px-4">
           <li>
             {previous && (
               <Link to={previous.frontmatter.slug} rel="prev">

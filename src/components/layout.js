@@ -10,28 +10,41 @@ const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
 
+  const Routes = () => {
+    return (
+      <>
+        <Link to="/blog" className="nav-link">
+          <span className="inline-block text-sky-700">Blog</span>
+        </Link>
+        <Link to="/portfolio" className="nav-link">
+          <span className="inline-block text-sky-700">Portfolio</span>
+        </Link>
+        <Link to="/resume" className="nav-link">
+          <span className="inline-block text-sky-700">Resume</span>
+        </Link>
+        <Link to="/about" className="nav-link">
+          <span className="inline-block text-sky-700">About</span>
+        </Link>
+      </>
+    )
+  }
+
   const header = (
     <>
-      <Link className="text-xl font-black" to="/">
-        {title}
+      <Link to="/">
+        <h1 className="text-xl md:text-3xl font-black text-sky-700 m-0">
+          {title}
+        </h1>
       </Link>
-      <nav className="gap-x-2 uppercase hidden sm:flex">
-        <Link to="/blog">
-          <span className="inline-block">Blog</span>
-        </Link>
-        <Link to="/portfolio">
-          <span className="inline-block">Portfolio</span>
-        </Link>
-        <Link to="/about">
-          <span className="inline-block">About</span>
-        </Link>
+      <nav className="gap-x-6 uppercase hidden sm:flex text-xl">
+        <Routes />
       </nav>
       <div
-        className="relative w-7 h-7 sm:hidden z-20"
+        className="relative w-7 h-7 sm:hidden z-30 overflow-hidden"
         onClick={() => setShowMobileMenu(!showMobileMenu)}
       >
         <FontAwesomeIcon
-          className={`text-blue-800 absolute right-0 top-1 transition-all ${
+          className={`absolute right-0 top-1 transition-all ${
             showMobileMenu
               ? "translate-x-0 opacity-100"
               : "translate-x-10 opacity-0"
@@ -40,7 +53,7 @@ const Layout = ({ location, title, children }) => {
         />
 
         <FontAwesomeIcon
-          className={`text-blue-800 absolute right-0 top-1 transition-all ${
+          className={`absolute right-0 top-1 transition-all ${
             showMobileMenu
               ? "translate-x-10 opacity-0"
               : "translate-x-0 opacity-100"
@@ -49,33 +62,29 @@ const Layout = ({ location, title, children }) => {
         />
       </div>
       <div
-        className={`fixed flex flex-col text-center gap-y-4 uppercase justify-center pb-8 w-full h-full bg-white top-0 left-0 z-10 sm:hidden transition-all ${
+        className={`fixed text-center pb-8 w-full h-full bg-gradient-to-t from-[#eceff3] to-[#f8fbff] top-0 left-0 z-20 sm:hidden transition-all ${
           showMobileMenu ? "opacity-100" : "translate-y-[-100%] opacity-0"
         }`}
       >
-        <Link to="/blog">
-          <span className="inline-block">Blog</span>
-        </Link>
-        <Link to="/portfolio">
-          <span className="inline-block">Portfolio</span>
-        </Link>
-        <Link to="/about">
-          <span className="inline-block">About</span>
-        </Link>
+        <nav
+          className={`flex flex-col text-center gap-y-4 uppercase justify-center h-full`}
+        >
+          <Routes />
+        </nav>
       </div>
     </>
   )
 
   return (
     <div
-      className="max-w-[42rem] xl:max-w-[64rem] m-auto py-10 px-5"
+      className="w-full bg-gradient-to-t from-[#eceff3] to-[#f8fbff] min-h-[100vh] pb-20 relative"
       data-is-root-path={isRootPath}
     >
-      <header className="global-header flex justify-between font-header font-sans text-lg">
+      <header className="flex justify-between items-center font-header font-sans text-lg py-4 md:py-10 px-5 md:px-10 text-sky-700">
         {header}
       </header>
-      <main>{children}</main>
-      <footer>
+      <main className="font-sans">{children}</main>
+      <footer className="absolute bottom-0 h-20 w-full py-10 px-5 md:px-10">
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.com">Gatsby</a>

@@ -11,8 +11,8 @@ module.exports = {
   siteMetadata: {
     title: `PARAG BHATNAGAR`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Parag Bhatnagar`,
+      summary: `Full-stack developer. Design dabbler. Intermittent illustrator.`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,

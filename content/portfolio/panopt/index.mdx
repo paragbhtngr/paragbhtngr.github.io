@@ -1,0 +1,83 @@
+---
+title: Panopt
+date: "2015-08-12"
+description: 'A logo design for the Yale-NUS newspaper, the erstwhile-titled "Panopt", whose name has since been changed to "The Octant"'
+slug: "panopt"
+post: portfolio
+featuredImage: "./panopt.png"
+embeddedImagesLocal:
+  - panopt-1.jpg
+  - panopt-2.jpg
+  - panopt-3.jpg
+  - panopt-4.jpg
+  - panopt-5.jpg
+---
+
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
+
+![Panopt Logo](./panopt.png)
+
+<br />
+
+A logo design for the Yale-NUS newspaper, the erstwhile-titled "Panopt", whose name has since been changed to "The Octant".
+
+The name for the magazine comes from Jeremy Bentham's Panopticon - a prison designed so that the warden was in the center of the prison. This allowed the warden sitting at the centre of the prison to effectively watch everyone in the prison at the same time. Terrible name for a newspaper? Possibly. But it seemed like a good idea at the time. Let's crack on, however.
+
+The idea started with a simplified diagram of the Panopticon.
+
+<div className="flex rounded-lg overflow-hidden">
+  <GatsbyImage
+    className="w-full h-full"
+    image={getImage(
+      props.data.mdx.frontmatter.embeddedImagesLocal[0]?.childImageSharp
+        ?.gatsbyImageData
+    )}
+    style={{ mixBlendMode: "multiply" }}
+  />
+  <GatsbyImage
+    className="w-full h-full"
+    image={getImage(
+      props.data.mdx.frontmatter.embeddedImagesLocal[1]?.childImageSharp
+        ?.gatsbyImageData
+    )}
+    style={{ mixBlendMode: "multiply" }}
+  />
+</div>
+<br />
+The goal was to incorporate the design into the text somehow, effectively
+creating a logotype. I distilled the panopticon to its simplest form - a circle
+with a smaller circle in it - to suggest the visual identity of the panopticon,
+without being too literal about the whole thing. The next step was to pick the
+font.
+
+<div className="flex rounded-lg overflow-hidden">
+  <GatsbyImage
+    className="h-full w-full"
+    image={getImage(
+      props.data.mdx.frontmatter.embeddedImagesLocal[2]?.childImageSharp
+        ?.gatsbyImageData
+    )}
+    style={{ mixBlendMode: "multiply" }}
+  />
+  <GatsbyImage
+    className="h-full w-full"
+    image={getImage(
+      props.data.mdx.frontmatter.embeddedImagesLocal[3]?.childImageSharp
+        ?.gatsbyImageData
+    )}
+    style={{ mixBlendMode: "multiply" }}
+  />
+  <GatsbyImage
+    className="h-full w-full "
+    image={getImage(
+      props.data.mdx.frontmatter.embeddedImagesLocal[4]?.childImageSharp
+        ?.gatsbyImageData
+    )}
+    style={{ mixBlendMode: "multiply" }}
+  />
+</div>
+<br />
+
+Here I had some interesting choices. I narrowed it down to 3 - a sans-serif medium weight font, a more traditional newsy serif font and a light geometric font. Out of the three, the geometric font conveyed the idea clearest and was more modern to go with the modern nature of the newspaper and the content.
+
+<br />
