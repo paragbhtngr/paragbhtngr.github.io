@@ -19,9 +19,9 @@ const Layout = ({ location, title, children }) => {
         <Link to="/portfolio" className="nav-link">
           <span className="inline-block text-sky-700">Portfolio</span>
         </Link>
-        <Link to="/resume" className="nav-link">
+        {/* <Link to="/resume" className="nav-link">
           <span className="inline-block text-sky-700">Resume</span>
-        </Link>
+        </Link> */}
         <Link to="/about" className="nav-link">
           <span className="inline-block text-sky-700">About</span>
         </Link>
@@ -85,9 +85,7 @@ const Layout = ({ location, title, children }) => {
       </header>
       <main className="font-sans">{children}</main>
       <footer className="absolute bottom-0 h-20 w-full py-10 px-5 md:px-10">
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+        © {new Date().getFullYear()}, Parag Bhatnagar
       </footer>
     </div>
   )
